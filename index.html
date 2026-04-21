@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ═══════════════════════════════════════════
+       SEO & DESCRIÇÃO
+  ═══════════════════════════════════════════ -->
+  <title>Cardápio | Forno à Lenha Pizzaria</title>
+  <meta name="description" content="Peça online pelo Forno à Lenha Pizzaria! Pizzas artesanais, Sushis, Esfihas e Bebidas. Delivery e retirada. Ter–Dom 18h30–23h.">
+  <meta name="keywords" content="pizzaria, forno à lenha, cardápio, delivery, pizza, sushi, esfiha, Maceió, Alagoas">
+  <meta name="author" content="Forno à Lenha Pizzaria">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://fornoalenha.vercel.app/">
+
+  <!-- ═══════════════════════════════════════════
+       OPEN GRAPH — Facebook · WhatsApp · LinkedIn
+       ⚠️  og:image DEVE ser JPEG/PNG 1200×630px
+           Recomendado: crie /assets/imgs/og-image.jpg
+           e substitua a URL abaixo.
+  ═══════════════════════════════════════════ -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://fornoalenha.vercel.app/">
+  <meta property="og:site_name"   content="Forno à Lenha Pizzaria">
+  <meta property="og:title"       content="🍕 Forno à Lenha — Cardápio Digital">
+  <meta property="og:description" content="Pizzas artesanais, Sushis, Esfihas e Bebidas. Monte seu pedido online e finalize pelo WhatsApp! Ter–Dom 18h30–23h.">
+  <meta property="og:image"       content="https://fornoalenha.vercel.app/assets/imgs/og-image.webp">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"   content="Logo do Forno à Lenha Pizzaria">
+  <meta property="og:locale"      content="pt_BR">
+
+  <!-- ═══════════════════════════════════════════
+       TWITTER / X CARDS
+  ═══════════════════════════════════════════ -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="🍕 Forno à Lenha — Cardápio Digital">
+  <meta name="twitter:description" content="Pizzas artesanais, Sushis, Esfihas e Bebidas. Monte seu pedido e finalize pelo WhatsApp!">
+  <meta name="twitter:image"       content="https://fornoalenha.vercel.app/assets/imgs/og-image.webp">
+  <meta name="twitter:image:alt"   content="Logo do Forno à Lenha Pizzaria">
+
+  <!-- ═══════════════════════════════════════════
+       PWA / MOBILE CHROME & SAFARI
+  ═══════════════════════════════════════════ -->
+  <meta name="theme-color" content="#09090b">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Forno à Lenha">
+  <link rel="apple-touch-icon" href="/assets/imgs/fornoalenha.webp">
+
+  <!-- ═══════════════════════════════════════════
+       FAVICON
+  ═══════════════════════════════════════════ -->
+  <link rel="icon" href="/assets/icon/fornoalenha.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/assets/icon/fornoalenha.ico">
+
+  <!-- ═══════════════════════════════════════════
+       FONTES
+  ═══════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/promo.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- SVG sprite inline – zero dependência de CDN externo -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="ico-wpp" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </symbol>
+    <symbol id="ico-insta" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </symbol>
+    <symbol id="ico-cart" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0"/>
+    </symbol>
+    <symbol id="ico-fire" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12a.58.58 0 01-.14-.17c-1.13-1.43-1.31-3.48-.55-5.12C5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.71 1.73 1.08 1.78 2.95 3.03 4.96 3.27 2.14.27 4.43-.12 6.07-1.6 1.83-1.66 2.47-4.32 1.53-6.6l-.13-.28c-.22-.48-.48-.92-.77-1.29z"/>
+    </symbol>
+  </svg>
+
+  <!-- ═══════════════════════════════════════════
+       GOOGLE ANALYTICS
+  ═══════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPWQ3131HF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-ZPWQ3131HF', { anonymize_ip: true });
+  </script>
+</head>
+<body>
+
+<!-- ═══════════════ SPLASH SCREEN ═══════════════ -->
+<div id="splash" aria-hidden="true">
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"   stop-color="#ffb10a"/>
+        <stop offset="100%" stop-color="#ff7a2c"/>
+      </linearGradient>
+    </defs>
+  </svg>
+  <div class="splash-ring">
+    <svg viewBox="0 0 110 110" aria-hidden="true">
+      <circle cx="55" cy="55" r="52"/>
+    </svg>
+    <div class="splash-logo">
+      <img src="/assets/imgs/fornoalenha.webp" alt="Forno à Lenha">
+    </div>
+  </div>
+  <p class="splash-name">Forno à Lenha</p>
+  <div class="splash-bar" role="progressbar" aria-label="Carregando"></div>
+  <p class="splash-tagline">Carregando o cardápio...</p>
+</div>
+
+<!-- ═══════════════ TOPBAR ═══════════════ -->
+<header class="topbar" id="site-header">
+  <!-- Logo → clique vai ao footer -->
+  <a class="brand" href="#site-footer" aria-label="Forno à Lenha — ir para rodapé">
+    <img class="brand-logo" src="/assets/imgs/fornoalenha.webp" alt="Forno à Lenha">
+    <div class="brand-info">
+      <span class="brand-name">Forno à Lenha</span>
+      <span class="brand-sub">Pizzaria</span>
+    </div>
+  </a>
+
+  <nav class="main-nav" aria-label="Seções do cardápio">
+    <a class="nav-link active" href="#pizzas"  data-target="pizzas">
+      <span class="nav-icon" aria-hidden="true">🍕</span><span>Pizzas</span>
+    </a>
+    <!-- <a class="nav-link" href="#sushi"   data-target="sushi">
+      <span class="nav-icon" aria-hidden="true">🍣</span><span>Sushis</span>
+    </a> -->
+    <a class="nav-link" href="#esfiha"  data-target="esfiha">
+      <span class="nav-icon" aria-hidden="true">🥟</span><span>Esfihas</span>
+    </a>
+    <a class="nav-link" href="#bebidas" data-target="bebidas">
+      <span class="nav-icon" aria-hidden="true">🥤</span><span>Bebidas</span>
+    </a>
+  </nav>
+</header>
+
+<!-- ═══════════════ FABs ═══════════════ -->
+<button class="cart-fab" id="open-cart" type="button" aria-label="Abrir carrinho">
+  <svg width="22" height="22" aria-hidden="true"><use href="#ico-cart"/></svg>
+  <span class="fab-badge" id="cart-count" aria-label="itens no carrinho">0</span>
+  <span class="fab-total" id="fab-total" aria-live="polite"></span>
+</button>
+
+<a class="wpp-fab"
+   href="https://api.whatsapp.com/send?phone=5582991201916&text=Boa%20noite%21%20Eu%20fiz%20um%20pedido%20e%20gostaria%20de%20atualizar%20algumas%20informa%C3%A7%C3%B5es%21"
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Chamar no WhatsApp"
+   onclick="gtag&&gtag('event','wpp_float_click',{event_category:'cta'})">
+  <svg width="24" height="24" aria-hidden="true"><use href="#ico-wpp"/></svg>
+</a>
+
+<!-- ═══════════════ TOAST ═══════════════ -->
+<div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ═══════════════ CONTEÚDO ═══════════════ -->
+<main class="container">
+
+  <!-- Hero -->
+  <div class="hero" role="banner">
+    <div class="hero-body">
+      <div class="hero-pill"><svg width="14" height="14" aria-hidden="true" style="vertical-align:middle"><use href="#ico-fire"/></svg>&nbsp; Forno à Lenha desde 2024</div>
+      <h1 class="hero-title">O sabor que <em>aquece</em> a noite</h1>
+      <p class="hero-sub">Ter–Dom&nbsp;·&nbsp;18h30 às 23h&nbsp;·&nbsp;Delivery e Retirada</p>
+    </div>
+  </div>
+
+  <!-- ▸ PIZZAS ──────────────────────────── -->
+  <section class="secao" id="pizzas">
+    <div class="sec-head">
+      <h2>🍕 Pizzas</h2>
+    </div>
+
+    <!-- Tabela de preços -->
+    <div class="prices-grid" aria-label="Tabela de preços das pizzas">
+      <div class="pc">
+        <p class="pc-title">Tradicionais</p>
+        <ul>
+          <li>Brotinho<strong>R$ 20,90</strong></li>
+          <li>Média<strong>R$ 37,90</strong></li>
+          <li>Grande<strong>R$ 47,90</strong></li>
+        </ul>
+      </div>
+      <div class="pc">
+        <p class="pc-title">Especiais</p>
+        <ul>
+          <li>Brotinho<strong>R$ 30,90</strong></li>
+          <li>Média<strong>R$ 49,90</strong></li>
+          <li>Grande<strong>R$ 59,90</strong></li>
+        </ul>
+      </div>
+      <div class="pc">
+        <p class="pc-title">Doces</p>
+        <ul>
+          <li>Brotinho<strong>R$ 30,90</strong></li>
+          <li>Média<strong>R$ 39,90</strong></li>
+          <li>Grande<strong>R$ 49,90</strong></li>
+        </ul>
+      </div>
+      <div class="pc">
+        <p class="pc-title">Borda Recheada</p>
+        <ul>
+          <li>Média<strong>R$ 12,90</strong></li>
+          <li>Grande<strong>R$ 15,90</strong></li>
+          <li style="color:var(--txt3)">Brotinho<span>—</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Monte sua pizza + Sabores disponíveis -->
+    <div class="pizza-cta-wrap">
+      <!-- Card Monte -->
+      <div class="card-monte" id="card-monte" role="button" tabindex="0" aria-label="Monte sua pizza personalizada">
+        <span class="monte-icon" aria-hidden="true">🍕</span>
+        <h3>Monte sua Pizza</h3>
+        <p>Escolha tamanho, até 2 sabores e borda recheada do seu jeito</p>
+        <span class="monte-btn" aria-hidden="true">Montar agora</span>
+      </div>
+
+      <!-- Info sabores -->
+      <div class="pizza-info-card">
+        <div>
+          <h4>Tradicionais</h4>
+          <div class="pizza-flavors">
+            <span class="flavor-tag">Mussarela</span>
+            <span class="flavor-tag">Mista</span>
+            <span class="flavor-tag">Calabresa</span>
+            <span class="flavor-tag">Frango</span>
+            <span class="flavor-tag">Marguerita</span>
+            <span class="flavor-tag">Baiana</span>
+            <span class="flavor-tag">Napolitana</span>
+            <span class="flavor-tag">Milho</span>
+          </div>
+        </div>
+        <div>
+          <h4>Especiais</h4>
+          <div class="pizza-flavors">
+            <span class="flavor-tag">Frango c/ Catupiry</span>
+            <span class="flavor-tag">Camarão</span>
+            <span class="flavor-tag">Portuguesa</span>
+            <span class="flavor-tag">Lombo Canadense</span>
+            <span class="flavor-tag">Quatro Queijos</span>
+            <span class="flavor-tag">Bacon</span>
+            <span class="flavor-tag">Atum</span>
+            <span class="flavor-tag">Catupirela</span>
+          </div>
+        </div>
+        <div>
+          <h4>Doces</h4>
+          <div class="pizza-flavors">
+            <span class="flavor-tag">M&amp;M</span>
+            <span class="flavor-tag">Banana</span>
+            <span class="flavor-tag">Romeu e Julieta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ▸ SUSHIS ──────────────────────────── -->
+  <!-- <section class="secao" id="sushi">
+    <div class="sec-head"><h2>🍣 Sushis</h2></div>
+
+    <p class="sub-h">🍱 Combinados</p>
+    <div class="track-wrap">
+      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
+      <div class="cards" role="list">
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/combinado1.webp" alt="Combinado 01" loading="lazy">
+          <div class="card-body">
+            <h3>Combinado 01 <small style="color:var(--txt3)">(12 pç)</small></h3>
+            <p>Hots de Filadélfia e camarão, Uramakis de salmão e Hossomakis de kani.</p>
+            <div class="card-foot">
+              <span class="price">R$ 31,90</span>
+              <button class="btn-add" data-name="Combinado 01 (12 peças)" data-price="31.90" aria-label="Adicionar Combinado 01">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/combinado2.webp" alt="Combinado 02" loading="lazy">
+          <div class="card-body">
+            <h3>Combinado 02 <small style="color:var(--txt3)">(12 pç)</small></h3>
+            <p>Hots crocantes de camarão, kani e o clássico Filadélfia.</p>
+            <div class="card-foot">
+              <span class="price">R$ 35,90</span>
+              <button class="btn-add" data-name="Combinado 02 (12 peças)" data-price="35.90" aria-label="Adicionar Combinado 02">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/combinado3.webp" alt="Combinado 03" loading="lazy">
+          <div class="card-body">
+            <h3>Combinado 03 <small style="color:var(--txt3)">(14 pç)</small></h3>
+            <p>Equilíbrio entre Uramaki, Hossomaki e Hots com sabor marcante.</p>
+            <div class="card-foot">
+              <span class="price">R$ 37,90</span>
+              <button class="btn-add" data-name="Combinado 03 (14 peças)" data-price="37.90" aria-label="Adicionar Combinado 03">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/combinado4.webp" alt="Combinado 04" loading="lazy">
+          <div class="card-body">
+            <h3>Combinado 04 <small style="color:var(--txt3)">(19 pç)</small></h3>
+            <p>Hots variados, Uramakis de salmão e a leveza do kani.</p>
+            <div class="card-foot">
+              <span class="price">R$ 47,90</span>
+              <button class="btn-add" data-name="Combinado 04 (19 peças)" data-price="47.90" aria-label="Adicionar Combinado 04">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/combinado5.webp" alt="Combinado 05" loading="lazy">
+          <div class="card-body">
+            <h3>Combinado 05 <small style="color:var(--txt3)">(26 pç)</small></h3>
+            <p>Niguiris, Sashimis, Joys e Dragons. Ideal para compartilhar.</p>
+            <div class="card-foot">
+              <span class="price">R$ 64,90</span>
+              <button class="btn-add" data-name="Combinado 05 (26 peças)" data-price="64.90" aria-label="Adicionar Combinado 05">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="sbtn sr" aria-label="Rolar para direita">&#8250;</button>
+    </div>
+
+    <p class="sub-h">🍙 Temakis</p>
+    <div class="track-wrap">
+      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
+      <div class="cards" role="list">
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/tsalmao.webp" alt="Temaki Salmão" loading="lazy">
+          <div class="card-body">
+            <h3>Temaki Salmão</h3>
+            <p>Cone de alga crocante com arroz japonês e cubos frescos de salmão.</p>
+            <div class="card-foot">
+              <span class="price">R$ 37,90</span>
+              <button class="btn-add" data-name="Temaki de Salmão" data-price="37.90" aria-label="Adicionar Temaki de Salmão">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/tsalmaogrelhado.webp" alt="Temaki Salmão Grelhado" loading="lazy">
+          <div class="card-body">
+            <h3>Temaki Salmão Grelhado</h3>
+            <p>Salmão grelhado no ponto, cream cheese e arroz em alga crocante.</p>
+            <div class="card-foot">
+              <span class="price">R$ 37,90</span>
+              <button class="btn-add" data-name="Temaki de Salmão Grelhado" data-price="37.90" aria-label="Adicionar Temaki de Salmão Grelhado">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/tcamarao.webp" alt="Temaki Camarão" loading="lazy">
+          <div class="card-body">
+            <h3>Temaki Camarão</h3>
+            <p>Camarões inteiros com arroz e cream cheese no cone de alga.</p>
+            <div class="card-foot">
+              <span class="price">R$ 37,90</span>
+              <button class="btn-add" data-name="Temaki de Camarão" data-price="37.90" aria-label="Adicionar Temaki de Camarão">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/thotcamarao.webp" alt="Temaki Hot Camarão" loading="lazy">
+          <div class="card-body">
+            <h3>Temaki Hot Camarão</h3>
+            <p>Camarão crocante empanado com molho especial no cone de alga.</p>
+            <div class="card-foot">
+              <span class="price">R$ 37,90</span>
+              <button class="btn-add" data-name="Temaki Hot Camarão" data-price="37.90" aria-label="Adicionar Temaki Hot Camarão">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/thotsalmaogrelhado.webp" alt="Temaki Hot Salmão Grelhado" loading="lazy">
+          <div class="card-body">
+            <h3>Temaki Hot Salmão Grelhado</h3>
+            <p>Alga empanada, salmão grelhado, cream cheese e cebolinha fresca.</p>
+            <div class="card-foot">
+              <span class="price">R$ 37,90</span>
+              <button class="btn-add" data-name="Temaki Hot Salmão Grelhado" data-price="37.90" aria-label="Adicionar Temaki Hot Salmão Grelhado">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="sbtn sr" aria-label="Rolar para direita">&#8250;</button>
+    </div>
+
+    <p class="sub-h">🌮 Sushidog</p>
+    <div class="track-wrap">
+      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
+      <div class="cards" role="list">
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/sushidog1.jpeg" alt="Sushidog de Salmão" loading="lazy">
+          <div class="card-body">
+            <h3>Sushidog de Salmão</h3>
+            <p>Salmão fresco com arroz e toque especial do Chef no formato inovador.</p>
+            <div class="card-foot">
+              <span class="price">R$ 38,90</span>
+              <button class="btn-add" data-name="Sushidog de Salmão" data-price="38.90" aria-label="Adicionar Sushidog de Salmão">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/sushidog2.jpeg" alt="Sushidog Salmão Grelhado" loading="lazy">
+          <div class="card-body">
+            <h3>Sushidog Salmão Grelhado</h3>
+            <p>Salmão grelhado desfiado com cream cheese no formato hot dog japonês.</p>
+            <div class="card-foot">
+              <span class="price">R$ 38,90</span>
+              <button class="btn-add" data-name="Sushidog de Salmão Grelhado" data-price="38.90" aria-label="Adicionar Sushidog Salmão Grelhado">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/sushis/sushidog.webp" alt="Sushidog de Camarão" loading="lazy">
+          <div class="card-body">
+            <h3>Sushidog de Camarão</h3>
+            <p>Camarões crocantes em base de arroz e alga com molho tarê.</p>
+            <div class="card-foot">
+              <span class="price">R$ 38,90</span>
+              <button class="btn-add" data-name="Sushidog de Camarão" data-price="38.90" aria-label="Adicionar Sushidog de Camarão">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="sbtn sr gone" aria-label="Rolar para direita">&#8250;</button>
+    </div>
+  </section> -->
+
+  <!-- ▸ ESFIHAS ──────────────────────────── -->
+  <section class="secao" id="esfiha">
+    <div class="sec-head">
+      <h2>🥟 Esfihas</h2>
+      <span class="sec-badge">Mínimo 5 unidades</span>
+    </div>
+
+    <p class="sub-h">Tradicionais — R$ 3,90</p>
+    <div class="track-wrap">
+      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
+      <div class="cards" role="list">
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirrami.webp" alt="Esfiha Mista" loading="lazy">
+          <div class="card-body"><h3>Mista</h3>
+            <div class="card-foot"><span class="price">R$ 3,90</span>
+              <button class="btn-add" data-name="Esfiha Mista" data-price="3.90" aria-label="Adicionar Esfiha Mista">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirrafr.webp" alt="Esfiha de Frango" loading="lazy">
+          <div class="card-body"><h3>Frango</h3>
+            <div class="card-foot"><span class="price">R$ 3,90</span>
+              <button class="btn-add" data-name="Esfiha de Frango" data-price="3.90" aria-label="Adicionar Esfiha de Frango">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirramu.webp" alt="Esfiha de Mussarela" loading="lazy">
+          <div class="card-body"><h3>Mussarela</h3>
+            <div class="card-foot"><span class="price">R$ 3,90</span>
+              <button class="btn-add" data-name="Esfiha de Mussarela" data-price="3.90" aria-label="Adicionar Esfiha de Mussarela">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirracb.webp" alt="Esfiha de Calabresa" loading="lazy">
+          <div class="card-body"><h3>Calabresa</h3>
+            <div class="card-foot"><span class="price">R$ 3,90</span>
+              <button class="btn-add" data-name="Esfiha de Calabresa" data-price="3.90" aria-label="Adicionar Esfiha de Calabresa">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirramg.webp" alt="Esfiha de Marguerita" loading="lazy">
+          <div class="card-body"><h3>Marguerita</h3>
+            <div class="card-foot"><span class="price">R$ 3,90</span>
+              <button class="btn-add" data-name="Esfiha de Marguerita" data-price="3.90" aria-label="Adicionar Esfiha de Marguerita">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="sbtn sr gone" aria-label="Rolar para direita">&#8250;</button>
+    </div>
+
+    <p class="sub-h">Especiais — R$ 4,90</p>
+    <div class="track-wrap">
+      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
+      <div class="cards" role="list">
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirracm.webp" alt="Esfiha de Camarão" loading="lazy">
+          <div class="card-body"><h3>Camarão</h3>
+            <div class="card-foot"><span class="price">R$ 4,90</span>
+              <button class="btn-add" data-name="Esfiha de Camarão" data-price="4.90" aria-label="Adicionar Esfiha de Camarão">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirracs.webp" alt="Esfiha de Carne de Sol" loading="lazy">
+          <div class="card-body"><h3>Carne de Sol</h3>
+            <div class="card-foot"><span class="price">R$ 4,90</span>
+              <button class="btn-add" data-name="Esfiha de Carne de Sol" data-price="4.90" aria-label="Adicionar Esfiha de Carne de Sol">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirrafc.webp" alt="Esfiha Frango com Catupiry" loading="lazy">
+          <div class="card-body"><h3>Frango c/ Catupiry</h3>
+            <div class="card-foot"><span class="price">R$ 4,90</span>
+              <button class="btn-add" data-name="Esfiha Frango com Catupiry" data-price="4.90" aria-label="Adicionar Esfiha Frango com Catupiry">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfirraqq.webp" alt="Esfiha Quatro Queijos" loading="lazy">
+          <div class="card-body"><h3>Quatro Queijos</h3>
+            <div class="card-foot"><span class="price">R$ 4,90</span>
+              <button class="btn-add" data-name="Esfiha Quatro Queijos" data-price="4.90" aria-label="Adicionar Esfiha Quatro Queijos">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="sbtn sr gone" aria-label="Rolar para direita">&#8250;</button>
+    </div>
+
+    <p class="sub-h">Doces — R$ 4,90</p>
+    <div class="track-wrap">
+      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
+      <div class="cards" role="list">
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfihabr.webp" alt="Esfiha de Brigadeiro" loading="lazy">
+          <div class="card-body"><h3>Brigadeiro</h3>
+            <div class="card-foot"><span class="price">R$ 4,90</span>
+              <button class="btn-add" data-name="Esfiha de Brigadeiro" data-price="4.90" aria-label="Adicionar Esfiha de Brigadeiro">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfihabn.webp" alt="Esfiha de Banana" loading="lazy">
+          <div class="card-body"><h3>Banana</h3>
+            <div class="card-foot"><span class="price">R$ 4,90</span>
+              <button class="btn-add" data-name="Esfiha de Banana" data-price="4.90" aria-label="Adicionar Esfiha de Banana">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfihamm.webp" alt="Esfiha M&M" loading="lazy">
+          <div class="card-body"><h3>M &amp; M</h3>
+            <div class="card-foot"><span class="price">R$ 4,90</span>
+              <button class="btn-add" data-name="Esfiha M & M" data-price="4.90" aria-label="Adicionar Esfiha M&M">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/esfihas/esfiharj.webp" alt="Esfiha Romeu e Julieta" loading="lazy">
+          <div class="card-body"><h3>Romeu &amp; Julieta</h3>
+            <div class="card-foot"><span class="price">R$ 4,90</span>
+              <button class="btn-add" data-name="Esfiha Romeu & Julieta" data-price="4.90" aria-label="Adicionar Esfiha Romeu e Julieta">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="sbtn sr gone" aria-label="Rolar para direita">&#8250;</button>
+    </div>
+  </section>
+
+  <!-- ▸ BEBIDAS ──────────────────────────── -->
+  <section class="secao" id="bebidas">
+    <div class="sec-head"><h2>🥤 Bebidas</h2></div>
+    <div class="track-wrap">
+      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
+      <div class="cards" role="list">
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/bebidas/h2o.webp" alt="H2O 500ml" loading="lazy">
+          <div class="card-body"><h3>H2O 500ml</h3>
+            <p>Água mineral gelada, perfeita para acompanhar.</p>
+            <div class="card-foot"><span class="price">R$ 6,90</span>
+              <button class="btn-add" data-name="H2O 500ml" data-price="6.90" aria-label="Adicionar H2O 500ml">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/bebidas/h2o-limoneto.webp" alt="H2O Limoneto 500ml" loading="lazy">
+          <div class="card-body"><h3>H2O Limoneto 500ml</h3>
+            <p>Água saborizada com toque cítrico refrescante.</p>
+            <div class="card-foot"><span class="price">R$ 6,90</span>
+              <button class="btn-add" data-name="H2O - Limoneto 500ml" data-price="6.90" aria-label="Adicionar H2O Limoneto">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/bebidas/cocalt.webp" alt="Coca-Cola 350ml" loading="lazy">
+          <div class="card-body"><h3>Coca-Cola 350ml</h3>
+            <p>Lata gelada, o combo clássico com pizza.</p>
+            <div class="card-foot"><span class="price">R$ 6,90</span>
+              <button class="btn-add" data-name="Coca-Cola 350ml" data-price="6.90" aria-label="Adicionar Coca-Cola 350ml">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/bebidas/cocaltzr.webp" alt="Coca-Cola Zero 350ml" loading="lazy">
+          <div class="card-body"><h3>Coca-Cola Zero 350ml</h3>
+            <p>Sabor clássico sem açúcar, gelada e refrescante.</p>
+            <div class="card-foot"><span class="price">R$ 6,90</span>
+              <button class="btn-add" data-name="Coca-Cola Zero 350ml" data-price="6.90" aria-label="Adicionar Coca-Cola Zero 350ml">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/bebidas/coca1l.webp" alt="Coca-Cola 1L" loading="lazy">
+          <div class="card-body"><h3>Coca-Cola 1L</h3>
+            <p>Garrafa familiar, ideal para dividir a mesa.</p>
+            <div class="card-foot"><span class="price">R$ 9,90</span>
+              <button class="btn-add" data-name="Coca-Cola 1L" data-price="9.90" aria-label="Adicionar Coca-Cola 1L">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/bebidas/coca1lzr.webp" alt="Coca-Cola Zero 1L" loading="lazy">
+          <div class="card-body"><h3>Coca-Cola Zero 1L</h3>
+            <p>Versão sem açúcar em tamanho família.</p>
+            <div class="card-foot"><span class="price">R$ 9,90</span>
+              <button class="btn-add" data-name="Coca-Cola Zero 1L" data-price="9.90" aria-label="Adicionar Coca-Cola Zero 1L">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img class="card-img" src="/assets/imgs/bebidas/guarana1l.webp" alt="Guaraná 1L" loading="lazy">
+          <div class="card-body"><h3>Guaraná 1L</h3>
+            <p>Guaraná gelado, refrescante para toda família.</p>
+            <div class="card-foot"><span class="price">R$ 9,90</span>
+              <button class="btn-add" data-name="Guaraná 1L" data-price="9.90" aria-label="Adicionar Guaraná 1L">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <button class="sbtn sr" aria-label="Rolar para direita">&#8250;</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="site-footer" id="site-footer">
+  <img class="ft-logo" src="/assets/imgs/fornoalenha.webp" alt="Forno à Lenha Pizzaria">
+  <p class="ft-name">Forno à Lenha Pizzaria</p>
+  <div class="ft-socials">
+    <a class="ft-sl wpp"
+       href="https://api.whatsapp.com/send?phone=5582991201916&text=Boa%20noite%2C%20tudo%20bem%3F%20Gostaria%20de%20esclarecer%20algumas%20d%C3%BAvidas%21"
+       target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+      <svg width="20" height="20" aria-hidden="true"><use href="#ico-wpp"/></svg>
+    </a>
+    <a class="ft-sl insta"
+       href="https://www.instagram.com/fornoalenhapizzaria2024/"
+       target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg width="20" height="20" aria-hidden="true"><use href="#ico-insta"/></svg>
+    </a>
+  </div>
+  <div class="ft-hours">
+    <strong style="color:var(--txt)">Horário de funcionamento</strong><br>
+    Terça a Domingo: 18h30 às 23h00<br>
+    <span style="color:var(--txt3)">Segunda-feira: Fechado</span>
+  </div>
+  <div class="ft-div"></div>
+  <p class="ft-credit">&copy; 2026 - Versão 2.0 &mdash; | Todos os direitos reservados a <a href="https://rodolphoraposo.vercel.app" target="_blank" rel="noopener noreferrer">Rapôso Web Dev</a></p>
+</footer>
+
+<!-- ═══════════════ OVERLAY + DRAWER CARRINHO ═══════════════ -->
+<div id="cart-overlay" class="cart-ov" aria-hidden="true"></div>
+
+<aside class="cart" id="cart" aria-label="Carrinho de compras" aria-hidden="true">
+  <div class="cart-hdr">
+    <h3>🛒 Seu Pedido</h3>
+    <button class="icon-btn" id="close-cart" type="button" aria-label="Fechar carrinho">✕</button>
+  </div>
+
+  <div class="cart-scroll">
+    <div id="cart-items" class="cart-items">
+      <div class="empty-msg">
+        <span class="empty-icon" aria-hidden="true">🛒</span>
+        Seu carrinho está vazio.<br>Adicione itens para continuar.
+      </div>
+    </div>
+
+    <div class="cart-form">
+
+      <div class="fsec">
+        <p class="fsec-title">Tipo de Entrega</p>
+        <div class="radio-group" role="radiogroup" aria-label="Tipo de entrega">
+          <label class="ropt selected">
+            <input type="radio" name="modo-entrega" value="retirada" checked> 🏃 Retirada no balcão
+          </label>
+          <label class="ropt">
+            <input type="radio" name="modo-entrega" value="delivery"> 🛵 Delivery
+          </label>
+        </div>
+      </div>
+
+      <div id="delivery-fields" class="del-fields hidden">
+        <div class="field">
+          <label for="bairro">Bairro</label>
+          <input type="text" id="bairro" placeholder="Seu bairro" autocomplete="address-level2">
+          <span class="hint">Entrega grátis!</span>
+        </div>
+        <div class="g2">
+          <div class="field">
+            <label for="rua">Rua / Avenida</label>
+            <input type="text" id="rua" placeholder="Rua das Flores" autocomplete="street-address">
+          </div>
+          <div class="field">
+            <label for="numero">Número</label>
+            <input type="text" id="numero" placeholder="123" inputmode="numeric">
+          </div>
+        </div>
+        <div class="g2">
+          <div class="field">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" placeholder="Apto, Bloco...">
+          </div>
+          <div class="field">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" placeholder="00000-000" inputmode="numeric" autocomplete="postal-code">
+          </div>
+        </div>
+        <div class="field">
+          <label for="referencia">Referência</label>
+          <input type="text" id="referencia" placeholder="Próximo à praça...">
+        </div>
+      </div>
+
+      <div class="fsec">
+        <p class="fsec-title">Seus Dados</p>
+        <div class="g2">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Seu nome" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="telefone">WhatsApp</label>
+            <input type="tel" id="telefone" placeholder="(82) 9 0000-0000" autocomplete="tel">
+          </div>
+        </div>
+      </div>
+
+      <div class="fsec">
+        <p class="fsec-title">Pagamento</p>
+        <div class="field">
+          <label for="forma-pagamento" class="sr-only">Forma de pagamento</label>
+          <select id="forma-pagamento" aria-label="Forma de pagamento">
+            <option value="dinheiro">💵 Dinheiro</option>
+            <option value="debito">💳 Cartão de Débito</option>
+            <option value="credito">💳 Cartão de Crédito</option>
+            <option value="pix">📱 PIX</option>
+          </select>
+        </div>
+        <div id="pix-section" class="pix-section hidden" style="margin-top:8px">
+          <span class="hint">⚠️ Copie a chave PIX, pague e envie o comprovante pelo WhatsApp.</span>
+          <div class="field" style="margin-top:7px">
+            <label for="pix-key-inline">Chave PIX</label>
+            <div class="copy-row">
+              <input type="text" id="pix-key-inline" readonly aria-label="Chave PIX">
+              <button type="button" class="btn btn-secondary" id="btn-copy-pix-inline">Copiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fsec">
+        <p class="fsec-title">Observações</p>
+        <div class="field">
+          <label for="observacao" class="sr-only">Observações do pedido</label>
+          <textarea id="observacao" placeholder="Sem cebola, troco para R$50, atenção ao interfone..." rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="sbox hidden" id="cupom-box">
+        <p class="sbox-title">🏷️ Cupom Promocional</p>
+        <div class="field">
+          <label for="cupom-input" class="sr-only">Código do cupom</label>
+          <div class="copy-row">
+            <input type="text" id="cupom-input" placeholder="Digite o cupom" autocomplete="off" style="text-transform:uppercase">
+            <button type="button" class="btn btn-secondary" id="btn-aplicar-cupom">Aplicar</button>
+          </div>
+          <small id="cupom-feedback" class="hint"></small>
+        </div>
+      </div>
+
+    </div><!-- /cart-form -->
+  </div><!-- /cart-scroll -->
+
+  <div class="cart-ftr">
+    <div class="linha"><span>Subtotal</span><strong id="cart-subtotal">R$ 0,00</strong></div>
+    <div class="linha total"><span>Total</span><strong id="cart-total">R$ 0,00</strong></div>
+    <button class="btn-fin" id="btn-finalizar" type="button">
+      <svg width="20" height="20" aria-hidden="true" style="vertical-align:middle"><use href="#ico-wpp"/></svg> Finalizar pelo WhatsApp
+    </button>
+    <button class="btn-back" id="btn-continuar" type="button">← Continuar comprando</button>
+    <p class="pix-tip">💳 Pix · Débito · Crédito · Dinheiro</p>
+  </div>
+</aside>
+
+<!-- ═══════ MODAL PIX ═══════ -->
+<div id="pix-modal" class="modal" role="dialog" aria-modal="true" aria-label="Pagamento via PIX" aria-hidden="true">
+  <div class="mc sm">
+    <div class="mc-hdr">
+      <h3>📱 Pagamento via PIX</h3>
+      <button class="icon-btn" id="btn-pix-fechar" type="button" aria-label="Fechar">✕</button>
+    </div>
+    <div style="padding:14px 18px">
+      <p class="hint" style="margin-bottom:11px">Copie a chave, faça o pagamento e clique em <b>Finalizar no WhatsApp</b> com o comprovante.</p>
+      <div class="field">
+        <label for="pix-key-modal">Chave PIX</label>
+        <div class="copy-row">
+          <input type="text" id="pix-key-modal" readonly>
+          <button type="button" class="btn btn-secondary" id="btn-copy-pix-modal">Copiar</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="btn-pix-cancelar">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btn-pix-continuar">Finalizar no WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ MODAL ESFIHA MÍNIMO ═══════ -->
+<div id="esfiha-modal" class="modal" role="alertdialog" aria-modal="true" aria-label="Pedido mínimo de esfihas" aria-hidden="true">
+  <div class="mc sm">
+    <div class="mc-hdr">
+      <h3>🥟 Pedido mínimo de esfihas</h3>
+      <button class="icon-btn" id="btn-esfiha-fechar" type="button" aria-label="Fechar">✕</button>
+    </div>
+    <div style="padding:14px 18px">
+      <p style="margin-bottom:7px">Pedido mínimo de <strong>5 unidades</strong>.</p>
+      <p style="color:var(--txt2);font-size:.86rem;margin-bottom:14px">
+        Você adicionou <strong id="esfiha-count">0</strong> esfiha(s). Adicione mais para continuar.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary" id="btn-esfiha-ok">Entendido!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ MODAL MONTE SUA PIZZA ═══════ -->
+<div id="pizza-modal" class="modal" role="dialog" aria-modal="true" aria-label="Monte sua Pizza">
+  <div class="mc">
+    <div class="mc-hdr">
+      <h3>🍕 Monte sua Pizza</h3>
+      <button class="icon-btn" id="close-pizza-modal" type="button" aria-label="Fechar">✕</button>
+    </div>
+    <form id="pizza-form" novalidate>
+      <fieldset>
+        <legend>Tamanho</legend>
+        <div class="opts" id="tamanho-opts" role="radiogroup" aria-label="Escolha o tamanho"></div>
+        <small class="hint" id="hint-precos">Selecione um tamanho para ver os preços.</small>
+      </fieldset>
+      <fieldset>
+        <legend>Sabores (até 2)</legend>
+        <div id="sabor-opts"></div>
+        <small class="hint" id="hint-sabores" aria-live="polite">Pode escolher até 2 sabores (meio a meio).</small>
+      </fieldset>
+      <fieldset>
+        <legend>Borda Recheada</legend>
+        <div id="borda-options" role="radiogroup" aria-label="Escolha a borda"></div>
+        <small class="hint">Disponível apenas para Média e Grande.</small>
+      </fieldset>
+      <div class="resumo" aria-live="polite">
+        <div><span>Pizza</span><strong id="p-subtotal">R$ 0,00</strong></div>
+        <div><span>Adicional de Borda</span><strong id="p-borda">R$ 0,00</strong></div>
+        <div class="r-total"><span>Total</span><strong id="p-total">R$ 0,00</strong></div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="btn-pizza-cancelar">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Adicionar ao Carrinho 🛒</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="comanda-digital" aria-hidden="true"></div>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script src="./assets/js/promo.js"></script>
+<script src="./assets/js/script.js"></script>
+
+</body>
+</html>

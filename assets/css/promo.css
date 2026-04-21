@@ -1,0 +1,147 @@
+/* ═══════════════════════════════════════════
+   PROMO.CSS — Estilos do sistema de promoções
+═══════════════════════════════════════════ */
+
+/* ─── Pop-up overlay ─── */
+#promo-popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0,0,0,.68);
+  z-index: 9999;
+}
+#promo-popup-overlay.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* ─── Card do pop-up ─── */
+.promo-popup-card {
+  position: relative;
+  width: min(92vw, 560px);
+  max-height: 100%;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,.06)), to(rgba(255,255,255,.02)));
+  background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%);
+  -webkit-box-shadow: 0 18px 60px rgba(0,0,0,.5);
+  box-shadow: 0 18px 60px rgba(0,0,0,.5);
+  overflow: hidden;
+}
+
+/* ─── Botão fechar ─── */
+.promo-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(0,0,0,.88);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: background .2s;
+  transition: background .2s;
+}
+.promo-popup-close:hover { background: rgba(0,0,0,.97); }
+
+/* ─── Conteúdo ─── */
+.promo-popup-content { padding: 14px; }
+
+.promo-popup-image-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0,0,0,.35);
+  min-height: 0;
+  padding-bottom: 104%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.promo-popup-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #F4A261;
+  color: #000;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #3F6C3A;
+  z-index: 2;
+  font-size: .82rem;
+}
+
+.promo-popup-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+/* ─── CTA sobre imagem ─── */
+.promo-popup-footer {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.promo-popup-btn {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #F4A261;
+  color: #000;
+  font-weight: 800;
+  text-decoration: none;
+  -webkit-box-shadow: 0 10px 24px rgba(0,0,0,.28);
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+  border: 1px solid #3F6C3A;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .9rem;
+}
+
+/* ─── Breakpoints ─── */
+@media (min-width: 640px) {
+  .promo-popup-card { width: min(92vw, 720px); }
+  .promo-popup-content { padding: 24px; }
+  .promo-popup-image-wrapper { padding-bottom: 104%; }
+}
+@media (min-width: 1024px) {
+  .promo-popup-content { padding: 24px; }
+  .promo-popup-image-wrapper { max-height: 60vh; padding-bottom: 0; }
+  .promo-popup-card { width: min(86vw, 980px); }
+}
+@media (min-width: 1440px) {
+  .promo-popup-card { width: min(70vw, 1100px); }
+}
