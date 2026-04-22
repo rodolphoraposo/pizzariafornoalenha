@@ -55,48 +55,171 @@ function registrarPedidoNaSheets(total) {
 }
 
 /**
- * sincronizarPrecosDaSheets — ao carregar, atualiza os preços exibidos nos cards
- * com os valores da aba Cardapio na planilha. Atualiza data-price e o texto .price.
- * Se a Sheets estiver indisponível, os preços hardcoded do HTML permanecem.
+ * carregarCardapioDoSheets — carrega todo o cardápio da planilha.
+ * Pizzas: atualiza SABORES e PRECO_PIZZA dinamicamente.
+ * Esfihas, Sushis, Bebidas: renderiza os cards do zero.
+ * Fallback: mantém o HTML estático se a planilha não responder.
  */
-function sincronizarPrecosDaSheets() {
+function carregarCardapioDoSheets() {
   fetch(SHEETS_API_URL + '?action=menu')
     .then(function (res) { return res.json(); })
     .then(function (data) {
-      if (!data || !data.ok || !data.data) return;
+      if (!data || !data.ok || !data.data) {
+        console.warn('[Sheets] Cardápio não carregado — usando dados estáticos.');
+        return;
+      }
+      var d = data.data;
 
-      var todos = [];
-      Object.keys(data.data).forEach(function (cat) {
-        data.data[cat].forEach(function (item) { todos.push(item); });
-      });
-
-      todos.forEach(function (item) {
-        // Atualiza todos os botões .btn-add que têm data-name igual ao nome na planilha
-        document.querySelectorAll('.btn-add[data-name]').forEach(function (btn) {
-          if (btn.dataset.name === item.nome && item.preco) {
-            var novoPreco = Number(item.preco);
-            btn.dataset.price = novoPreco.toFixed(2);
-            // Atualiza o texto de preço no card pai
-            var card = btn.closest('.card');
-            if (card) {
-              var priceEl = card.querySelector('.price');
-              if (priceEl) priceEl.textContent = 'R$ ' + novoPreco.toFixed(2).replace('.', ',');
-            }
-            // Marca como indisponível se necessário
-            if (item.disponivel === false || item.disponivel === 'nao') {
-              btn.disabled = true;
-              btn.textContent = 'Esgotado';
-              btn.style.opacity = '0.5';
-            }
+      // ── PIZZAS: atualiza SABORES e PRECO_PIZZA dinamicamente ──
+      if (d.pizzas) {
+        var famMap = { Tradicional: 'Tradicional', Especial: 'Especial', Doce: 'Doce' };
+        Object.keys(famMap).forEach(function (fam) {
+          if (!d.pizzas[fam]) return;
+          var dadosFam = d.pizzas[fam];
+          // Atualiza preços
+          if (dadosFam.precos && Object.keys(dadosFam.precos).length) {
+            PRECO_PIZZA[fam] = dadosFam.precos;
+          }
+          // Atualiza sabores
+          if (dadosFam.sabores && dadosFam.sabores.length) {
+            SABORES[fam] = dadosFam.sabores.map(function (s) {
+              return { name: s.nome, img: s.img || '' };
+            });
           }
         });
-      });
+        console.log('[Sheets] ✅ Pizzas atualizadas.');
+      }
 
-      console.log('[Sheets] ✅ Preços sincronizados com a planilha.');
+      // ── ESFIHAS dinâmicas ──
+      if (d.esfihas && d.esfihas.length) {
+        renderizarSecaoDinamica('esfiha', d.esfihas);
+        console.log('[Sheets] ✅ Esfihas renderizadas:', d.esfihas.length);
+      }
+
+      // ── SUSHIS dinâmicos ──
+      if (d.sushis && d.sushis.length) {
+        renderizarSecaoDinamica('sushi', d.sushis);
+        console.log('[Sheets] ✅ Sushis renderizados:', d.sushis.length);
+      }
+
+      // ── BEBIDAS dinâmicas ──
+      if (d.bebidas && d.bebidas.length) {
+        renderizarSecaoDinamica('bebidas', d.bebidas);
+        console.log('[Sheets] ✅ Bebidas renderizadas:', d.bebidas.length);
+      }
     })
     .catch(function (err) {
-      console.warn('[Sheets] Preços não sincronizados — usando valores do HTML:', err.message);
+      console.warn('[Sheets] Falha ao carregar cardápio — mantendo dados estáticos:', err.message);
     });
+}
+
+/**
+ * renderizarSecaoDinamica — renderiza cards de uma seção a partir dos dados da planilha.
+ * Para esfihas agrupa por subcategoria (tradicional / especial / doce).
+ * Para sushis e bebidas renderiza em carrossel único.
+ */
+function renderizarSecaoDinamica(secaoId, itens) {
+  var secao = document.getElementById(secaoId);
+  if (!secao) return;
+
+  if (secaoId === 'esfiha') {
+    // Agrupa esfihas por subcategoria
+    var grupos = {};
+    itens.forEach(function (item) {
+      var sub = item.categoria || 'esfiha-tradicional';
+      if (!grupos[sub]) grupos[sub] = [];
+      grupos[sub].push(item);
+    });
+
+    var labelMap = {
+      'esfiha-tradicional': 'Tradicionais',
+      'esfiha-especial':    'Especiais',
+      'esfiha-doce':        'Doces'
+    };
+
+    // Remove carrosseis existentes (mas mantém o sec-head)
+    var secHead = secao.querySelector('.sec-head');
+    secao.innerHTML = '';
+    if (secHead) secao.appendChild(secHead);
+
+    Object.keys(grupos).forEach(function (sub) {
+      var label = labelMap[sub] || sub;
+      // Pega o preço base do primeiro item do grupo
+      var precoBase = grupos[sub][0] ? grupos[sub][0].preco : 0;
+      var subH = document.createElement('p');
+      subH.className = 'sub-h';
+      subH.textContent = label + ' — R$ ' + precoBase.toFixed(2).replace('.', ',');
+      secao.appendChild(subH);
+      secao.appendChild(criarCarrossel(grupos[sub]));
+    });
+    return;
+  }
+
+  // Sushis e Bebidas — carrossel único
+  var secHead2 = secao.querySelector('.sec-head');
+  var existingWraps = secao.querySelectorAll('.track-wrap');
+  existingWraps.forEach(function (w) { w.remove(); });
+  secao.appendChild(criarCarrossel(itens));
+
+  // Reinicia carrossel scroll
+  setTimeout(function () {
+    secao.querySelectorAll('.track-wrap').forEach(function (wrap) {
+      var track = wrap.querySelector('.cards');
+      var bl = wrap.querySelector('.sbtn.sl');
+      var br = wrap.querySelector('.sbtn.sr');
+      if (!track) return;
+      var STEP = 235;
+      function upd() {
+        var atStart = track.scrollLeft <= 3;
+        var atEnd   = track.scrollLeft + track.clientWidth >= track.scrollWidth - 3;
+        if (bl) { atStart ? bl.classList.add('gone') : bl.classList.remove('gone'); }
+        if (br) { atEnd   ? br.classList.add('gone') : br.classList.remove('gone'); }
+      }
+      if (bl) bl.addEventListener('click', function () { track.scrollBy({ left: -STEP, behavior: 'smooth' }); });
+      if (br) br.addEventListener('click', function () { track.scrollBy({ left: STEP,  behavior: 'smooth' }); });
+      track.addEventListener('scroll', upd, { passive: true });
+      setTimeout(upd, 100);
+    });
+  }, 100);
+}
+
+function criarCarrossel(itens) {
+  var wrap = document.createElement('div');
+  wrap.className = 'track-wrap';
+
+  var btnL = document.createElement('button');
+  btnL.className = 'sbtn sl gone';
+  btnL.setAttribute('aria-label', 'Rolar para esquerda');
+  btnL.innerHTML = '&#8249;';
+
+  var cards = document.createElement('div');
+  cards.className = 'cards';
+  cards.setAttribute('role', 'list');
+
+  itens.forEach(function (item) {
+    var article = document.createElement('article');
+    article.className = 'card';
+    article.setAttribute('role', 'listitem');
+    var preco = Number(item.preco) || 0;
+    article.innerHTML =
+      '<img class="card-img" src="' + escapeHTML(item.imagem || '') + '" alt="' + escapeHTML(item.nome) + '" loading="lazy">' +
+      '<div class="card-body"><h3>' + escapeHTML(item.nome) + '</h3>' +
+      (item.descricao ? '<p>' + escapeHTML(item.descricao) + '</p>' : '') +
+      '<div class="card-foot"><span class="price">R$ ' + preco.toFixed(2).replace('.', ',') + '</span>' +
+      '<button class="btn-add" data-name="' + escapeHTML(item.nome) + '" data-price="' + preco.toFixed(2) + '" aria-label="Adicionar ' + escapeHTML(item.nome) + '">' +
+      '+</button></div></div>';
+    cards.appendChild(article);
+  });
+
+  var btnR = document.createElement('button');
+  btnR.className = 'sbtn sr gone';
+  btnR.setAttribute('aria-label', 'Rolar para direita');
+  btnR.innerHTML = '&#8250;';
+
+  wrap.appendChild(btnL);
+  wrap.appendChild(cards);
+  wrap.appendChild(btnR);
+  return wrap;
 }
  
 var CUPOM_CFG = {
@@ -1000,5 +1123,5 @@ var pixKeyModal2 = $id('pix-key-modal');
 if (pixKeyInline) pixKeyInline.value = PIX_KEY;
 if (pixKeyModal2) pixKeyModal2.value = PIX_KEY;
 
-// Sincroniza preços com a planilha ao carregar (com pequeno delay para não impactar LCP)
-setTimeout(sincronizarPrecosDaSheets, 2000);
+// Carrega cardápio dinâmico da planilha (delay para não impactar LCP)
+setTimeout(carregarCardapioDoSheets, 2000);
