@@ -19,37 +19,35 @@ var SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbyU4h8uPleSTjLa4a4
  */
 function registrarPedidoNaSheets(total) {
   try {
-    var sub   = cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0);
-    var desc  = calcDesconto(sub);
+    var sub        = cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0);
+    var desc       = calcDesconto(sub);
     var totalFinal = total || Math.max(0, sub - desc);
 
     var payload = {
       action:    'novo_pedido',
-      customer:  ds.nome  || '',
-      telefone:  ds.tel   || '',
+      customer:  ds.nome || '',
+      telefone:  ds.tel  || '',
       endereco:  ds.modo === 'delivery'
         ? (ds.rua || '') + ', ' + (ds.num || '') + ' — ' + (ds.bairro || '')
         : 'Retirada no balcão',
-      pagamento: ds.pag   || 'dinheiro',
-      notes:     ds.obs   || '',
+      pagamento: ds.pag  || 'dinheiro',
+      notes:     ds.obs  || '',
       total:     totalFinal,
       items: cart.map(function (i) {
         return { name: i.name, price: i.price, qty: i.qty };
       })
     };
 
-    // mode: 'no-cors' — fire-and-forget. Bypassa o problema do redirect 302 do Apps Script.
-    // O pedido chega na planilha mesmo sem ler a resposta.
-    fetch(SHEETS_API_URL, {
-      method:  'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body:    JSON.stringify(payload),
-      mode:    'no-cors'
-    }).then(function () {
-      console.log('[Sheets] ✅ Pedido enviado para a planilha.');
-    }).catch(function (err) {
-      console.warn('[Sheets] ⚠️ Falha ao registrar pedido (não afeta o WhatsApp):', err.message);
-    });
+    // Usa GET com dados codificados na URL — contorna o problema do redirect 302 do Apps Script.
+    // Fire-and-forget com no-cors: o dado chega na planilha, não precisamos ler a resposta.
+    var url = SHEETS_API_URL + '?d=' + encodeURIComponent(JSON.stringify(payload));
+    fetch(url, { mode: 'no-cors' })
+      .then(function () {
+        console.log('[Sheets] ✅ Pedido enviado para a planilha.');
+      })
+      .catch(function (err) {
+        console.warn('[Sheets] ⚠️ Falha ao registrar pedido (não afeta o WhatsApp):', err.message);
+      });
 
   } catch (err) {
     console.warn('[Sheets] Erro inesperado:', err.message);
@@ -62,7 +60,7 @@ function registrarPedidoNaSheets(total) {
  * Se a Sheets estiver indisponível, os preços hardcoded do HTML permanecem.
  */
 function sincronizarPrecosDaSheets() {
-  fetch(SHEETS_API_URL + '?action=menu', { redirect: 'follow', mode: 'cors' })
+  fetch(SHEETS_API_URL + '?action=menu')
     .then(function (res) { return res.json(); })
     .then(function (data) {
       if (!data || !data.ok || !data.data) return;
