@@ -141,6 +141,7 @@ function renderizarSecaoDinamica(secaoId, itens) {
     var secHead = secao.querySelector('.sec-head');
     secao.innerHTML = '';
     if (secHead) secao.appendChild(secHead);
+    // Loading removed — content will be appended below
 
     Object.keys(grupos).forEach(function (sub) {
       var label = labelMap[sub] || sub;
@@ -156,7 +157,9 @@ function renderizarSecaoDinamica(secaoId, itens) {
   }
 
   // Sushis e Bebidas — carrossel único
-  var secHead2 = secao.querySelector('.sec-head');
+  // Remove loading indicator
+  var loadingEl = secao.querySelector('[id$="-loading"]');
+  if (loadingEl) loadingEl.remove();
   var existingWraps = secao.querySelectorAll('.track-wrap');
   existingWraps.forEach(function (w) { w.remove(); });
   secao.appendChild(criarCarrossel(itens));
