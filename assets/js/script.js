@@ -38,17 +38,15 @@ function registrarPedidoNaSheets(total) {
       })
     };
 
+    // mode: 'no-cors' — fire-and-forget. Bypassa o problema do redirect 302 do Apps Script.
+    // O pedido chega na planilha mesmo sem ler a resposta.
     fetch(SHEETS_API_URL, {
-      method:   'POST',
-      headers:  { 'Content-Type': 'text/plain' },
-      body:     JSON.stringify(payload),
-      redirect: 'follow'
-    }).then(function (res) {
-      return res.json();
-    }).then(function (data) {
-      if (data && data.ok) {
-        console.log('[Sheets] ✅ Pedido registrado:', data.orderId);
-      }
+      method:  'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body:    JSON.stringify(payload),
+      mode:    'no-cors'
+    }).then(function () {
+      console.log('[Sheets] ✅ Pedido enviado para a planilha.');
     }).catch(function (err) {
       console.warn('[Sheets] ⚠️ Falha ao registrar pedido (não afeta o WhatsApp):', err.message);
     });
@@ -64,7 +62,7 @@ function registrarPedidoNaSheets(total) {
  * Se a Sheets estiver indisponível, os preços hardcoded do HTML permanecem.
  */
 function sincronizarPrecosDaSheets() {
-  fetch(SHEETS_API_URL + '?action=menu', { redirect: 'follow' })
+  fetch(SHEETS_API_URL + '?action=menu', { redirect: 'follow', mode: 'cors' })
     .then(function (res) { return res.json(); })
     .then(function (data) {
       if (!data || !data.ok || !data.data) return;
