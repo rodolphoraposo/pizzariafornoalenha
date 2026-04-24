@@ -88,6 +88,22 @@ function carregarCardapioDoSheets() {
           }
         });
         console.log('[Sheets] ✅ Pizzas atualizadas.');
+
+        // Atualiza os chips de sabores na info card
+        var mapFlavors = {
+          Tradicional: 'flavorsTradicional',
+          Especial:    'flavorsEspecial',
+          Doce:        'flavorsDoce'
+        };
+        Object.keys(mapFlavors).forEach(function (fam) {
+          var el = document.getElementById(mapFlavors[fam]);
+          if (!el || !d.pizzas[fam] || !d.pizzas[fam].sabores.length) return;
+          el.innerHTML = d.pizzas[fam].sabores
+            .map(function (s) {
+              return '<span class="flavor-tag">' + escapeHTML(s.nome) + '</span>';
+            })
+            .join('');
+        });
       }
 
       // ── ESFIHAS dinâmicas ──
