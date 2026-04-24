@@ -134,9 +134,9 @@
     <a class="nav-link active" href="#pizzas"  data-target="pizzas">
       <span class="nav-icon" aria-hidden="true">🍕</span><span>Pizzas</span>
     </a>
-    <!-- <a class="nav-link" href="#sushi"   data-target="sushi">
+    <a class="nav-link" href="#sushi" data-target="sushi">
       <span class="nav-icon" aria-hidden="true">🍣</span><span>Sushis</span>
-    </a> -->
+    </a>
     <a class="nav-link" href="#esfiha"  data-target="esfiha">
       <span class="nav-icon" aria-hidden="true">🥟</span><span>Esfihas</span>
     </a>
@@ -253,192 +253,13 @@
   </section>
 
   <!-- ▸ SUSHIS ──────────────────────────── -->
-  <!-- <section class="secao" id="sushi">
+  <section class="secao" id="sushi">
     <div class="sec-head"><h2>🍣 Sushis</h2></div>
-
-    <p class="sub-h">🍱 Combinados</p>
-    <div class="track-wrap">
-      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
-      <div class="cards" role="list">
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/combinado1.webp" alt="Combinado 01" loading="lazy">
-          <div class="card-body">
-            <h3>Combinado 01 <small style="color:var(--txt3)">(12 pç)</small></h3>
-            <p>Hots de Filadélfia e camarão, Uramakis de salmão e Hossomakis de kani.</p>
-            <div class="card-foot">
-              <span class="price">R$ 31,90</span>
-              <button class="btn-add" data-name="Combinado 01 (12 peças)" data-price="31.90" aria-label="Adicionar Combinado 01">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/combinado2.webp" alt="Combinado 02" loading="lazy">
-          <div class="card-body">
-            <h3>Combinado 02 <small style="color:var(--txt3)">(12 pç)</small></h3>
-            <p>Hots crocantes de camarão, kani e o clássico Filadélfia.</p>
-            <div class="card-foot">
-              <span class="price">R$ 35,90</span>
-              <button class="btn-add" data-name="Combinado 02 (12 peças)" data-price="35.90" aria-label="Adicionar Combinado 02">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/combinado3.webp" alt="Combinado 03" loading="lazy">
-          <div class="card-body">
-            <h3>Combinado 03 <small style="color:var(--txt3)">(14 pç)</small></h3>
-            <p>Equilíbrio entre Uramaki, Hossomaki e Hots com sabor marcante.</p>
-            <div class="card-foot">
-              <span class="price">R$ 37,90</span>
-              <button class="btn-add" data-name="Combinado 03 (14 peças)" data-price="37.90" aria-label="Adicionar Combinado 03">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/combinado4.webp" alt="Combinado 04" loading="lazy">
-          <div class="card-body">
-            <h3>Combinado 04 <small style="color:var(--txt3)">(19 pç)</small></h3>
-            <p>Hots variados, Uramakis de salmão e a leveza do kani.</p>
-            <div class="card-foot">
-              <span class="price">R$ 47,90</span>
-              <button class="btn-add" data-name="Combinado 04 (19 peças)" data-price="47.90" aria-label="Adicionar Combinado 04">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/combinado5.webp" alt="Combinado 05" loading="lazy">
-          <div class="card-body">
-            <h3>Combinado 05 <small style="color:var(--txt3)">(26 pç)</small></h3>
-            <p>Niguiris, Sashimis, Joys e Dragons. Ideal para compartilhar.</p>
-            <div class="card-foot">
-              <span class="price">R$ 64,90</span>
-              <button class="btn-add" data-name="Combinado 05 (26 peças)" data-price="64.90" aria-label="Adicionar Combinado 05">+</button>
-            </div>
-          </div>
-        </article>
-
-      </div>
-      <button class="sbtn sr" aria-label="Rolar para direita">&#8250;</button>
+    <!-- Sushis carregados dinamicamente da planilha via Operatta -->
+    <div id="sushi-loading" style="padding:20px;text-align:center;color:var(--text-muted,#888);">
+      <i class="fas fa-spinner fa-spin"></i> Carregando sushis…
     </div>
-
-    <p class="sub-h">🍙 Temakis</p>
-    <div class="track-wrap">
-      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
-      <div class="cards" role="list">
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/tsalmao.webp" alt="Temaki Salmão" loading="lazy">
-          <div class="card-body">
-            <h3>Temaki Salmão</h3>
-            <p>Cone de alga crocante com arroz japonês e cubos frescos de salmão.</p>
-            <div class="card-foot">
-              <span class="price">R$ 37,90</span>
-              <button class="btn-add" data-name="Temaki de Salmão" data-price="37.90" aria-label="Adicionar Temaki de Salmão">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/tsalmaogrelhado.webp" alt="Temaki Salmão Grelhado" loading="lazy">
-          <div class="card-body">
-            <h3>Temaki Salmão Grelhado</h3>
-            <p>Salmão grelhado no ponto, cream cheese e arroz em alga crocante.</p>
-            <div class="card-foot">
-              <span class="price">R$ 37,90</span>
-              <button class="btn-add" data-name="Temaki de Salmão Grelhado" data-price="37.90" aria-label="Adicionar Temaki de Salmão Grelhado">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/tcamarao.webp" alt="Temaki Camarão" loading="lazy">
-          <div class="card-body">
-            <h3>Temaki Camarão</h3>
-            <p>Camarões inteiros com arroz e cream cheese no cone de alga.</p>
-            <div class="card-foot">
-              <span class="price">R$ 37,90</span>
-              <button class="btn-add" data-name="Temaki de Camarão" data-price="37.90" aria-label="Adicionar Temaki de Camarão">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/thotcamarao.webp" alt="Temaki Hot Camarão" loading="lazy">
-          <div class="card-body">
-            <h3>Temaki Hot Camarão</h3>
-            <p>Camarão crocante empanado com molho especial no cone de alga.</p>
-            <div class="card-foot">
-              <span class="price">R$ 37,90</span>
-              <button class="btn-add" data-name="Temaki Hot Camarão" data-price="37.90" aria-label="Adicionar Temaki Hot Camarão">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/thotsalmaogrelhado.webp" alt="Temaki Hot Salmão Grelhado" loading="lazy">
-          <div class="card-body">
-            <h3>Temaki Hot Salmão Grelhado</h3>
-            <p>Alga empanada, salmão grelhado, cream cheese e cebolinha fresca.</p>
-            <div class="card-foot">
-              <span class="price">R$ 37,90</span>
-              <button class="btn-add" data-name="Temaki Hot Salmão Grelhado" data-price="37.90" aria-label="Adicionar Temaki Hot Salmão Grelhado">+</button>
-            </div>
-          </div>
-        </article>
-
-      </div>
-      <button class="sbtn sr" aria-label="Rolar para direita">&#8250;</button>
-    </div>
-
-    <p class="sub-h">🌮 Sushidog</p>
-    <div class="track-wrap">
-      <button class="sbtn sl gone" aria-label="Rolar para esquerda">&#8249;</button>
-      <div class="cards" role="list">
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/sushidog1.jpeg" alt="Sushidog de Salmão" loading="lazy">
-          <div class="card-body">
-            <h3>Sushidog de Salmão</h3>
-            <p>Salmão fresco com arroz e toque especial do Chef no formato inovador.</p>
-            <div class="card-foot">
-              <span class="price">R$ 38,90</span>
-              <button class="btn-add" data-name="Sushidog de Salmão" data-price="38.90" aria-label="Adicionar Sushidog de Salmão">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/sushidog2.jpeg" alt="Sushidog Salmão Grelhado" loading="lazy">
-          <div class="card-body">
-            <h3>Sushidog Salmão Grelhado</h3>
-            <p>Salmão grelhado desfiado com cream cheese no formato hot dog japonês.</p>
-            <div class="card-foot">
-              <span class="price">R$ 38,90</span>
-              <button class="btn-add" data-name="Sushidog de Salmão Grelhado" data-price="38.90" aria-label="Adicionar Sushidog Salmão Grelhado">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" role="listitem">
-          <img class="card-img" src="/assets/imgs/sushis/sushidog.webp" alt="Sushidog de Camarão" loading="lazy">
-          <div class="card-body">
-            <h3>Sushidog de Camarão</h3>
-            <p>Camarões crocantes em base de arroz e alga com molho tarê.</p>
-            <div class="card-foot">
-              <span class="price">R$ 38,90</span>
-              <button class="btn-add" data-name="Sushidog de Camarão" data-price="38.90" aria-label="Adicionar Sushidog de Camarão">+</button>
-            </div>
-          </div>
-        </article>
-
-      </div>
-      <button class="sbtn sr gone" aria-label="Rolar para direita">&#8250;</button>
-    </div>
-  </section> -->
+  </section>
 
   <!-- ▸ ESFIHAS ──────────────────────────── -->
   <section class="secao" id="esfiha">
