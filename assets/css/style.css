@@ -1483,3 +1483,35 @@ legend { padding: 0 5px; color: var(--txt2); font-size: .82rem; }
   .sbtn { opacity: 0; }
   .pizza-cta-wrap { -ms-grid-columns: 1fr 1.5fr; grid-template-columns: 1fr 1.5fr; }
 }
+
+/* ── Produto indisponível ───────────────────────────────────── */
+.card-indisponivel {
+  position: relative;
+  opacity: .7;
+}
+.card-indisponivel .card-img {
+  filter: grayscale(60%) brightness(.75);
+}
+.card-indisponivel-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  border-radius: inherit;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+.card-indisponivel-badge {
+  background: rgba(0,0,0,.75);
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.25);
+}

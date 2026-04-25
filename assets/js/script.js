@@ -138,6 +138,16 @@ function renderizarSecaoDinamica(secaoId, itens) {
   var secao = document.getElementById(secaoId);
   if (!secao) return;
 
+  // Se TODOS os itens da seção estão inativos → oculta a seção inteira
+  var todosInativos = itens.every(function (item) {
+    return item.disponivel === false || item.disponivel === 'nao';
+  });
+  if (todosInativos) {
+    secao.style.display = 'none';
+    return;
+  }
+  secao.style.display = ''; // garante que volta a aparecer se reativada
+
   if (secaoId === 'esfiha') {
     // Agrupa esfihas por subcategoria
     var grupos = {};
@@ -217,16 +227,21 @@ function criarCarrossel(itens) {
 
   itens.forEach(function (item) {
     var article = document.createElement('article');
-    article.className = 'card';
+    var inativo = item.disponivel === false || item.disponivel === 'nao';
+    article.className = 'card' + (inativo ? ' card-indisponivel' : '');
     article.setAttribute('role', 'listitem');
     var preco = Number(item.preco) || 0;
+
     article.innerHTML =
       '<img class="card-img" src="' + escapeHTML(item.imagem || '') + '" alt="' + escapeHTML(item.nome) + '" loading="lazy">' +
+      (inativo ? '<div class="card-indisponivel-overlay"><span class="card-indisponivel-badge">Indisponível</span></div>' : '') +
       '<div class="card-body"><h3>' + escapeHTML(item.nome) + '</h3>' +
       (item.descricao ? '<p>' + escapeHTML(item.descricao) + '</p>' : '') +
       '<div class="card-foot"><span class="price">R$ ' + preco.toFixed(2).replace('.', ',') + '</span>' +
-      '<button class="btn-add" data-name="' + escapeHTML(item.nome) + '" data-price="' + preco.toFixed(2) + '" aria-label="Adicionar ' + escapeHTML(item.nome) + '">' +
-      '+</button></div></div>';
+      (inativo ? '' :
+        '<button class="btn-add" data-name="' + escapeHTML(item.nome) + '" data-price="' + preco.toFixed(2) + '" aria-label="Adicionar ' + escapeHTML(item.nome) + '">' +
+        '+</button>') +
+      '</div></div>';
     cards.appendChild(article);
   });
 
