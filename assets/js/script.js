@@ -83,7 +83,7 @@ function carregarCardapioDoSheets() {
           // Atualiza sabores
           if (dadosFam.sabores && dadosFam.sabores.length) {
             SABORES[fam] = dadosFam.sabores.map(function (s) {
-              return { name: s.nome, img: s.img || '' };
+              return { name: s.nome, img: s.img || '', disponivel: s.disponivel !== false };
             });
           }
         });
@@ -98,11 +98,15 @@ function carregarCardapioDoSheets() {
         Object.keys(mapFlavors).forEach(function (fam) {
           var el = document.getElementById(mapFlavors[fam]);
           if (!el || !d.pizzas[fam] || !d.pizzas[fam].sabores.length) return;
-          el.innerHTML = d.pizzas[fam].sabores
-            .map(function (s) {
-              return '<span class="flavor-tag">' + escapeHTML(s.nome) + '</span>';
-            })
-            .join('');
+          // Chips: só mostra sabores disponíveis
+          var disponiveis = d.pizzas[fam].sabores.filter(function (s) {
+            return s.disponivel !== false;
+          });
+          el.innerHTML = disponiveis.length
+            ? disponiveis.map(function (s) {
+                return '<span class="flavor-tag">' + escapeHTML(s.nome) + '</span>';
+              }).join('')
+            : '<span class="flavor-tag" style="opacity:.4">Nenhum disponível hoje</span>';
         });
       }
 
@@ -1033,10 +1037,14 @@ function construirOpcoesModal() {
       return '<div class="grupo-sabores"><strong>' + catLabel + '</strong>' +
              '<div class="opts opts-grid">' +
              lista.map(function (s, i) {
-               return '<input type="checkbox" id="sab-' + cat + '-' + i + '" name="sabor" value="' + s.name + '" data-fam="' + cat + '">' +
-                      '<label for="sab-' + cat + '-' + i + '">' +
+               var indisponivel = s.disponivel === false;
+               return '<input type="checkbox" id="sab-' + cat + '-' + i + '" name="sabor" value="' + s.name + '" data-fam="' + cat + '"' +
+                      (indisponivel ? ' disabled' : '') + '>' +
+                      '<label for="sab-' + cat + '-' + i + '"' +
+                      (indisponivel ? ' style="opacity:.4;filter:grayscale(1);cursor:not-allowed;" title="Indisponível hoje"' : '') + '>' +
                         '<img class="sabor-img" src="' + s.img + '" alt="' + s.name + '" loading="lazy">' +
                         s.name +
+                        (indisponivel ? '<span style="display:block;font-size:.65rem;color:#999;margin-top:2px;">Indisponível</span>' : '') +
                       '</label>';
              }).join('') +
              '</div><hr style="margin:8px 0;border:none;border-top:1px dashed var(--border)"></div>';
@@ -1159,3 +1167,6 @@ if (pixKeyModal2) pixKeyModal2.value = PIX_KEY;
 
 // Carrega cardápio dinâmico da planilha (delay para não impactar LCP)
 setTimeout(carregarCardapioDoSheets, 2000);
+
+// Recarrega a cada 3 minutos para refletir mudanças de disponibilidade
+setInterval(carregarCardapioDoSheets, 3 * 60 * 1000);
